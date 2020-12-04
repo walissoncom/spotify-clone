@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import SpotifyWebApi from 'spotify-web-api-js';
 
@@ -39,6 +39,14 @@ function App() {
         dispatch({
           type: 'SET_USER',
           user
+        })
+      })
+
+      // Get user playlists
+      spotify.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: 'SET_PLAYLISTS',
+          playlists
         })
       })
     }
