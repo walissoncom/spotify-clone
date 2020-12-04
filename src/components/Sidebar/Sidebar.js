@@ -11,7 +11,6 @@ import './Sidebar.css';
 
 function Sidebar() {
     const [{ playlists }, dispatch] = useDataLayerValue();
-    console.log(playlists);
 
     return (
         <div className='sidebar'>
@@ -26,7 +25,7 @@ function Sidebar() {
             <hr />
 
             {playlists?.items?.map((playlist) => (
-                <SidebarOption title={playlist.name} />
+                <SidebarOption key={playlist.id} title={playlist.name} />
             ))}
         </div>
     )
