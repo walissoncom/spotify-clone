@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
+import SpotifyWebApi from 'spotify-web-api-js';
+
 import Login from './components/Login/Login';
 import { getTokenFromUrl } from './spotify';
 
 import './App.css';
+
+// Creating a new instance of Spotify
+// It will allow the application to communicate back and forth with Spotify
+const spotify = new SpotifyWebApi();
 
 function App() {
 
@@ -19,8 +25,14 @@ function App() {
 
     if (_token) {
       setToken(_token);
+
+      spotify.setAccessToken(_token);
+
+      spotify.getMe().then(user => {
+        console.log('Person', user);
+      })
     }
-  }, []);
+  }, [])
 
   return (
     <div className="app">
